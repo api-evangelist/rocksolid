@@ -1,0 +1,308 @@
+openapi: 3.1.0
+info:
+  title: RockSolid Allocations Vaults API
+  version: '1.0'
+  x-api-version: v1
+  x-last-updated: '2025-09-11'
+  x-status: Active
+  description: Read-only REST API for the RockSolid liquid-vaults DeFi platform. It exposes the catalogue of RockSolid vaults with rich metadata (name, symbol, share and underlying-asset details, fees, curators, rewards, chain/platform info), latest performance data (per-share NAV, outstanding shares, estimated APR/APY, total assets), strategy allocation snapshots per allocation period, and calculated APR/TVL figures (with additional rETH-vs-ETH APR breakdowns for rETH vaults). The API is publicly readable and CORS-restricted to an allow list of origins; on-chain deposit/withdraw flows are handled directly against the ERC-7540 vault smart contracts (see the smart-contracts integration docs) rather than through this API. Faithfully transcribed by the API Evangelist enrichment pipeline from the published RockSolid integration API docs and the live production endpoint.
+  contact:
+    name: RockSolid
+    email: product@rocksolid.network
+    url: https://docs.rocksolid.network/integration/api
+  x-cors-allowed-origins:
+  - '*.rocketpool.net'
+  - '*.rocksolid.network'
+  - http://localhost:3000
+  - http://localhost:8788
+  - http://localhost:8787
+servers:
+- url: https://app-integration.rocksolid.network/api
+  description: Production
+tags:
+- name: Vaults
+  description: Vault catalogue, metadata and performance
+paths:
+  /vaults:
+    get:
+      operationId: listVaults
+      summary: List all vaults
+      description: Returns comprehensive information for all available vaults including metadata, performance data, strategy allocations, and curator information. Use the is_active field to filter visible vaults.
+      tags:
+      - Vaults
+      responses:
+        '200':
+          description: Array of vaults
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vault'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /vaults/{vault_address}:
+    get:
+      operationId: getVault
+      summary: Get a vault by address
+      description: Returns detailed information for a specific vault identified by its contract address.
+      tags:
+      - Vaults
+      parameters:
+      - $ref: '#/components/parameters/VaultAddress'
+      responses:
+        '200':
+          description: Vault detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vault'
+        '404':
+          description: Vault not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Performance:
+      type: object
+      properties:
+        vault_id:
+          type: integer
+        vault_performance_id:
+          type: integer
+        recorded_on:
+          type: string
+        per_share_nav:
+          type: string
+        outstanding_shares:
+          type: string
+        estimated_apy:
+          type: number
+        total_supply:
+          type: string
+        total_assets:
+          type: string
+        share_value_against_underlying_raw:
+          type: string
+        share_value_against_eth_raw:
+          type: string
+        shares_per_underlying_asset:
+          type: string
+        shares_per_eth:
+          type: string
+    Platform:
+      type: object
+      properties:
+        platform_id:
+          type: integer
+        name:
+          type: string
+        logo_url:
+          type: string
+    UnderlyingAsset:
+      type: object
+      properties:
+        token_id:
+          type: integer
+        name:
+          type: string
+        icon:
+          type: string
+        symbol:
+          type: string
+        address:
+          type: string
+        decimals:
+          type: integer
+        chain_database_id:
+          type: integer
+        price_feed_id:
+          type: string
+        price_feed_token:
+          type: string
+        is_active:
+          type: boolean
+        to_usd_oracle_contract:
+          type:
+          - string
+          - 'null'
+        to_eth_oracle_contract:
+          type:
+          - string
+          - 'null'
+        to_eth_price_feed_id:
+          type:
+          - string
+          - 'null'
+        is_yield_bearing:
+          type: boolean
+        yield_apr_endpoint:
+          type:
+          - string
+          - 'null'
+    Curator:
+      type: object
+      properties:
+        curator_id:
+          type: integer
+        name:
+          type: string
+        logo_url:
+          type: string
+        website_url:
+          type: string
+    Reward:
+      type: object
+      properties:
+        reward_id:
+          type: integer
+        name:
+          type: string
+        logo:
+          type: string
+        classification:
+          type: string
+          description: Token | Points | NFT
+        is_active:
+          type: boolean
+    Chain:
+      type: object
+      properties:
+        chain_database_id:
+          type: integer
+        name:
+          type: string
+        logo_url:
+          type: string
+        chain_id:
+          type: integer
+        explorer_url:
+          type: string
+    Vault:
+      type: object
+      description: A RockSolid liquid vault with metadata, related entities and latest performance.
+      properties:
+        vault_id:
+          type: integer
+        name:
+          type: string
+        symbol:
+          type: string
+        description:
+          type: string
+        details:
+          type: string
+        asset_logo_url:
+          type: string
+        asset_name:
+          type: string
+        asset_decimals:
+          type: integer
+        share_logo_url:
+          type: string
+        share_name:
+          type: string
+        share_decimals:
+          type: integer
+        vault_address:
+          type: string
+        chainId:
+          type: integer
+        aum_fee:
+          type: integer
+          description: Management/AUM fee in basis points
+        performance_fee:
+          type: integer
+          description: Performance fee in basis points
+        redemption_period:
+          type: string
+          example: 48-72h
+        platform_id:
+          type: integer
+        chain_database_id:
+          type: integer
+        underlying_asset_id:
+          type: integer
+        audit_url:
+          type: string
+        priority:
+          type: integer
+        is_active:
+          type: boolean
+          description: Controls vault visibility
+        wallet_address:
+          type: string
+        is_instant_withdrawal_enabled:
+          type: boolean
+        url_slug:
+          type: string
+        debank_url:
+          type:
+          - string
+          - 'null'
+        curators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Curator'
+        platform:
+          $ref: '#/components/schemas/Platform'
+        chain:
+          $ref: '#/components/schemas/Chain'
+        underlying_asset:
+          $ref: '#/components/schemas/UnderlyingAsset'
+        rewards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reward'
+        latest_performance:
+          $ref: '#/components/schemas/Performance'
+        pendingApr:
+          type: number
+        earnedApr:
+          type: number
+        totalApr:
+          type: number
+        incentiveStrategies:
+          type: array
+          items:
+            type: object
+        protocolFeePercent:
+          type: number
+        underlyingAssetGrowthRatePercent:
+          type: number
+    Error:
+      type: object
+      description: Standard error envelope returned by the API.
+      properties:
+        error:
+          type: string
+          description: Brief error description
+        message:
+          type: string
+          description: Detailed error message
+        timestamp:
+          type: string
+          format: date-time
+        details:
+          type: object
+  parameters:
+    VaultAddress:
+      name: vault_address
+      in: path
+      required: true
+      description: Vault contract address (normalized to lowercase)
+      schema:
+        type: string
+        example: '0xba71097e426983d840569edfa1a01396b56d86ad'

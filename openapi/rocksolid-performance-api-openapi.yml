@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: RockSolid Vaults Allocations Performance API
+  version: '1.0'
+  x-api-version: v1
+  x-last-updated: '2025-09-11'
+  x-status: Active
+  description: Read-only REST API for the RockSolid liquid-vaults DeFi platform. It exposes the catalogue of RockSolid vaults with rich metadata (name, symbol, share and underlying-asset details, fees, curators, rewards, chain/platform info), latest performance data (per-share NAV, outstanding shares, estimated APR/APY, total assets), strategy allocation snapshots per allocation period, and calculated APR/TVL figures (with additional rETH-vs-ETH APR breakdowns for rETH vaults). The API is publicly readable and CORS-restricted to an allow list of origins; on-chain deposit/withdraw flows are handled directly against the ERC-7540 vault smart contracts (see the smart-contracts integration docs) rather than through this API. Faithfully transcribed by the API Evangelist enrichment pipeline from the published RockSolid integration API docs and the live production endpoint.
+  contact:
+    name: RockSolid
+    email: product@rocksolid.network
+    url: https://docs.rocksolid.network/integration/api
+  x-cors-allowed-origins:
+  - '*.rocketpool.net'
+  - '*.rocksolid.network'
+  - http://localhost:3000
+  - http://localhost:8788
+  - http://localhost:8787
+servers:
+- url: https://app-integration.rocksolid.network/api
+  description: Production
+tags:
+- name: Performance
+  description: APR and TVL calculations
+paths:
+  /vaults/{vault_address}/apr:
+    get:
+      operationId: getVaultApr
+      summary: Get vault APR and TVL
+      description: Returns calculated Annual Percentage Rate (APR) and Total Value Locked (TVL) for a specific vault, with enhanced APR breakdowns against ETH for rETH vaults. APR calculation adapts to vault maturity.
+      tags:
+      - Performance
+      parameters:
+      - $ref: '#/components/parameters/VaultAddress'
+      - name: days_to_compute
+        in: query
+        required: false
+        description: Number of days to use for APR calculation (must be positive)
+        schema:
+          type: integer
+          default: 14
+          minimum: 1
+      responses:
+        '200':
+          description: APR and TVL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AprResponse'
+        '400':
+          description: Invalid days_to_compute parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Vault not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Subgraph query failed, no events found, or server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    VaultAddress:
+      name: vault_address
+      in: path
+      required: true
+      description: Vault contract address (normalized to lowercase)
+      schema:
+        type: string
+        example: '0xba71097e426983d840569edfa1a01396b56d86ad'
+  schemas:
+    Error:
+      type: object
+      description: Standard error envelope returned by the API.
+      properties:
+        error:
+          type: string
+          description: Brief error description
+        message:
+          type: string
+          description: Detailed error message
+        timestamp:
+          type: string
+          format: date-time
+        details:
+          type: object
+    AprResponse:
+      type: object
+      properties:
+        tvlRaw:
+          type: string
+          description: Total value locked in wei
+        apr:
+          type: string
+          description: APR as percentage string against underlying asset
+        baseAprAgainstEth:
+          type: string
+        strategyAprAgainstEth:
+          type: string
+        totalAprAgainstEth:
+          type: string

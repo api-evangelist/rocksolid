@@ -1,0 +1,180 @@
+openapi: 3.1.0
+info:
+  title: RockSolid Vaults Allocations API
+  version: '1.0'
+  x-api-version: v1
+  x-last-updated: '2025-09-11'
+  x-status: Active
+  description: Read-only REST API for the RockSolid liquid-vaults DeFi platform. It exposes the catalogue of RockSolid vaults with rich metadata (name, symbol, share and underlying-asset details, fees, curators, rewards, chain/platform info), latest performance data (per-share NAV, outstanding shares, estimated APR/APY, total assets), strategy allocation snapshots per allocation period, and calculated APR/TVL figures (with additional rETH-vs-ETH APR breakdowns for rETH vaults). The API is publicly readable and CORS-restricted to an allow list of origins; on-chain deposit/withdraw flows are handled directly against the ERC-7540 vault smart contracts (see the smart-contracts integration docs) rather than through this API. Faithfully transcribed by the API Evangelist enrichment pipeline from the published RockSolid integration API docs and the live production endpoint.
+  contact:
+    name: RockSolid
+    email: product@rocksolid.network
+    url: https://docs.rocksolid.network/integration/api
+  x-cors-allowed-origins:
+  - '*.rocketpool.net'
+  - '*.rocksolid.network'
+  - http://localhost:3000
+  - http://localhost:8788
+  - http://localhost:8787
+servers:
+- url: https://app-integration.rocksolid.network/api
+  description: Production
+tags:
+- name: Allocations
+  description: Strategy allocation snapshots and periods
+paths:
+  /vaults/{vault_address}/allocations:
+    get:
+      operationId: getVaultAllocations
+      summary: Get vault allocation snapshots
+      description: Returns allocation snapshots for a specific vault and allocation period, including an optional performance note. Allocation and APR values are returned as decimals (e.g. 0.20 = 20%).
+      tags:
+      - Allocations
+      parameters:
+      - $ref: '#/components/parameters/VaultAddress'
+      - name: period-id
+        in: query
+        required: true
+        description: Allocation period ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Allocation snapshots
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationSnapshotsResponse'
+        '400':
+          description: Missing or invalid period-id parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Vault or allocation period not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /vaults/allocation-periods:
+    get:
+      operationId: listAllocationPeriods
+      summary: List allocation periods
+      description: Returns all available allocation periods for use in date selectors and period navigation, ordered by period_start descending.
+      tags:
+      - Allocations
+      responses:
+        '200':
+          description: Allocation periods
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationPeriodsResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    AllocationPeriodsResponse:
+      type: object
+      properties:
+        periods:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllocationPeriodItem'
+        total:
+          type: integer
+    AllocationPeriodItem:
+      type: object
+      properties:
+        allocation_period_id:
+          type: integer
+        period_start:
+          type: integer
+          description: Unix timestamp
+        period_end:
+          type: integer
+          description: Unix timestamp
+    AllocationSnapshot:
+      type: object
+      properties:
+        id:
+          type: string
+        strategy:
+          type: string
+        description:
+          type: string
+        logoUrl:
+          type:
+          - string
+          - 'null'
+        allocation:
+          type: number
+          description: Percentage as decimal
+        strategyApr:
+          type: number
+          description: APR as decimal
+        ongoingApr:
+          type:
+          - number
+          - 'null'
+        pendingApr:
+          type:
+          - number
+          - 'null'
+        totalApr:
+          type: number
+    PerformanceNote:
+      type: object
+      properties:
+        vault_performance_note_id:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+        url:
+          type: string
+    Error:
+      type: object
+      description: Standard error envelope returned by the API.
+      properties:
+        error:
+          type: string
+          description: Brief error description
+        message:
+          type: string
+          description: Detailed error message
+        timestamp:
+          type: string
+          format: date-time
+        details:
+          type: object
+    AllocationSnapshotsResponse:
+      type: object
+      properties:
+        snapshots:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllocationSnapshot'
+        performance_note:
+          $ref: '#/components/schemas/PerformanceNote'
+  parameters:
+    VaultAddress:
+      name: vault_address
+      in: path
+      required: true
+      description: Vault contract address (normalized to lowercase)
+      schema:
+        type: string
+        example: '0xba71097e426983d840569edfa1a01396b56d86ad'
