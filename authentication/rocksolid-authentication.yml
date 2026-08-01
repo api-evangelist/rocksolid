@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.rocksolid.network/integration/api
+docs: https://docs.rocksolid.network/integration/api
+summary:
+  types: []
+  api_key_in: []
+  oauth2_flows: []
+  note: >-
+    The RockSolid Vaults API is a public, read-only data API. It declares no
+    authentication scheme (no API key, bearer token, or OAuth) in its published
+    documentation or its live responses. Access is instead restricted at the
+    browser layer by a CORS allow list. State-changing operations (deposit,
+    withdraw/redeem) are performed on-chain against the ERC-7540 vault smart
+    contracts and authenticated by wallet signature, not by this HTTP API.
+schemes: []
+cors_allowed_origins:
+- '*.rocketpool.net'
+- '*.rocksolid.network'
+- 'http://localhost:3000'
+- 'http://localhost:8788'
+- 'http://localhost:8787'
+onchain_auth:
+  model: wallet-signature
+  standard: ERC-7540 / ERC-4626
+  docs: https://docs.rocksolid.network/integration/smart-contracts

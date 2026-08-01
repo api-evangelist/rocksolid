@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/rocksolid-vaults-openapi.yml
+note: >-
+  No official hosted/remote MCP server was found for RockSolid. This is a
+  candidate tool surface derived one-to-one from the documented Vaults API
+  operations; all operations are read-only.
+server:
+  name: rocksolid-vaults
+  transport: http
+tools:
+- name: list_vaults
+  description: List all available RockSolid vaults with metadata and latest performance.
+  source_operation: openapi/rocksolid-vaults-openapi.yml#listVaults
+- name: get_vault
+  description: Get detailed information for a specific vault by contract address.
+  source_operation: openapi/rocksolid-vaults-openapi.yml#getVault
+- name: get_vault_allocations
+  description: Get strategy allocation snapshots for a vault and allocation period.
+  source_operation: openapi/rocksolid-vaults-openapi.yml#getVaultAllocations
+- name: list_allocation_periods
+  description: List available allocation periods for period navigation.
+  source_operation: openapi/rocksolid-vaults-openapi.yml#listAllocationPeriods
+- name: get_vault_apr
+  description: Get calculated APR and TVL for a vault, with rETH-vs-ETH breakdowns.
+  source_operation: openapi/rocksolid-vaults-openapi.yml#getVaultApr

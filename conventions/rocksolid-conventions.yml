@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/rocksolid-vaults-openapi.yml
+docs: https://docs.rocksolid.network/integration/api
+authentication:
+  style: none
+  detail: Public read-only API; CORS allow-list at the browser layer. See authentication/rocksolid-authentication.yml.
+idempotency:
+  supported: false
+  detail: >-
+    No idempotency contract. The HTTP API is entirely read-only (GET), so
+    idempotency keys are not applicable; write operations occur on-chain against
+    ERC-7540 vault contracts.
+pagination:
+  style: none
+  detail: >-
+    Collection endpoints (/vaults, /vaults/allocation-periods) return full
+    arrays. allocation-periods wraps results in {periods[], total} but exposes no
+    page/cursor params. Performance history is server-truncated (5 records on the
+    list endpoint, 30 on the detail endpoint).
+filtering:
+  detail: Client-side only, e.g. filter vaults by the is_active boolean field.
+field_conventions:
+  monetary: Wei-denominated values (tvlRaw, per_share_nav, *_raw) returned as strings to avoid precision loss.
+  percentages: >-
+    Allocation and strategy APR values in allocation snapshots are decimals
+    (0.20 = 20%); top-level apr/*AprAgainstEth are percentage strings ("12.34").
+  basis_points: Fees (aum_fee, performance_fee) and stored allocation/APR values are basis points (÷100 to decimal).
+versioning:
+  detail: Self-identified v1; unversioned base path /api/. See lifecycle/rocksolid-lifecycle.yml.
+error_envelope:
+  detail: Custom {error, message, timestamp?, details?} (NOT RFC 9457). See errors/rocksolid-problem-types.yml.
+rate_limiting:
+  detail: No rate-limit headers or policy documented.
+caching:
+  detail: 5-minute (300s) response caching on most endpoints; stale-while-revalidate on allocations.

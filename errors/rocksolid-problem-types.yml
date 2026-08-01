@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/rocksolid-vaults-openapi.yml
+docs: https://docs.rocksolid.network/integration/api
+format: custom
+envelope:
+  description: >-
+    RockSolid does NOT use RFC 9457 application/problem+json. Errors are returned
+    as a JSON object. The documented shape is {error, message}; live responses
+    additionally include {timestamp, details}.
+  fields:
+    error: Brief error description
+    message: Detailed error message
+    timestamp: ISO 8601 timestamp (live)
+    details: Nested error object (live)
+  example:
+    error: Not Found
+    message: Vault with address 0x... does not exist
+    timestamp: '2026-07-21T04:36:14.775Z'
+problems:
+- status: 400
+  title: Bad request
+  detail: Missing or invalid parameter (e.g. period-id, days_to_compute)
+  source_operations:
+  - openapi/rocksolid-vaults-openapi.yml#getVaultAllocations
+  - openapi/rocksolid-vaults-openapi.yml#getVaultApr
+- status: 404
+  title: Not found
+  detail: Vault or allocation period not found
+  source_operations:
+  - openapi/rocksolid-vaults-openapi.yml#getVault
+  - openapi/rocksolid-vaults-openapi.yml#getVaultAllocations
+  - openapi/rocksolid-vaults-openapi.yml#getVaultApr
+- status: 500
+  title: Server error
+  detail: Server error, subgraph query failure, or no events found for the vault
+  source_operations:
+  - openapi/rocksolid-vaults-openapi.yml#listVaults
+  - openapi/rocksolid-vaults-openapi.yml#getVault
+  - openapi/rocksolid-vaults-openapi.yml#getVaultApr

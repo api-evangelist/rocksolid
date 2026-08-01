@@ -1,0 +1,40 @@
+# RockSolid
+
+## RockSolid Docs
+
+- [Overview](https://docs.rocksolid.network/readme.md)
+- [Terminology](https://docs.rocksolid.network/terminology.md)
+- [Architecture & Roles](https://docs.rocksolid.network/architecture.md)
+- [Technology](https://docs.rocksolid.network/technology.md)
+- [Integration](https://docs.rocksolid.network/integration.md)
+- [Onboarding Guide](https://docs.rocksolid.network/integration/onboarding-guide.md)
+- [Smart Contracts](https://docs.rocksolid.network/integration/smart-contracts.md)
+- [API](https://docs.rocksolid.network/integration/api.md)
+- [Price Data Feed](https://docs.rocksolid.network/integration/price-data-feed.md): This section describes how to derive the price of rock.rETH shares.
+- [rETH Vault](https://docs.rocksolid.network/defi-vaults/reth-vault.md)
+- [AutoPlus Looped ETH Vault](https://docs.rocksolid.network/defi-vaults/autoplus-looped-eth-vault.md)
+- [MegaETH USDm Vault](https://docs.rocksolid.network/defi-vaults/megaeth-usdm-vault.md)
+- [Staking Liquidity Vaults (Lido V3)](https://docs.rocksolid.network/staking-vaults/staking-liquidity-vaults-lido-v3.md)
+- [How to Deposit](https://docs.rocksolid.network/for-depositors/how-to-deposit.md)
+- [How to Withdraw](https://docs.rocksolid.network/for-depositors/how-to-withdraw.md)
+- [Strategies](https://docs.rocksolid.network/for-depositors/strategies.md)
+- [Rewards](https://docs.rocksolid.network/for-depositors/rewards.md)
+- [Risks & Safety](https://docs.rocksolid.network/for-depositors/risks-and-safety.md)
+- [Overview for Protocols](https://docs.rocksolid.network/for-protocols/architecture.md)
+- [Audits](https://docs.rocksolid.network/audits/audits.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information, you can query the documentation dynamically by asking a question.
+Perform an HTTP GET request on a page URL with the `ask` query parameter:
+```
+GET https://docs.rocksolid.network/readme.md?ask=<question>
+```
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

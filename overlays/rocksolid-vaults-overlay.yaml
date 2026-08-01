@@ -1,0 +1,21 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for RockSolid Vaults API
+  version: 1.0.0
+extends: openapi/rocksolid-vaults-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-21'
+    x-api-category: DeFi / Liquid Vaults
+    x-auth-model: none-public-cors
+- target: $.tags
+  update:
+  - name: DeFi
+    description: Decentralized finance vault data (ERC-7540 / ERC-4626)
+- target: $.paths./vaults.get
+  update:
+    x-caching-seconds: 300
+- target: $.paths./vaults/{vault_address}/allocations.get
+  update:
+    x-caching: s-maxage=300, stale-while-revalidate=300

@@ -1,0 +1,18 @@
+{
+  "provider": "rocksolid",
+  "sources": [
+    "rocksolid-allocations-api-openapi.yml",
+    "rocksolid-performance-api-openapi.yml",
+    "rocksolid-vaults-api-openapi.yml"
+  ],
+  "outputs": [
+    "rocksolid-allocations-api-openapi.yml",
+    "rocksolid-performance-api-openapi.yml",
+    "rocksolid-vaults-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

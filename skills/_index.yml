@@ -1,0 +1,8 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/rocksolid-vaults-openapi.yml
+skills:
+- file: rocksolid-discover-vaults-and-yield.md
+  name: Discover RockSolid vaults and their yield
+  api: openapi/rocksolid-vaults-openapi.yml
+  operations: [listVaults, getVault, listAllocationPeriods, getVaultAllocations, getVaultApr]

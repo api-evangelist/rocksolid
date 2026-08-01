@@ -1,0 +1,64 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/rocksolid-vaults-openapi.yml
+docs: https://docs.rocksolid.network/integration/api
+entities:
+- name: Vault
+  key: vault_id
+  address_field: vault_address
+  note: A RockSolid liquid vault (ERC-7540). Root aggregate.
+- name: Curator
+  key: curator_id
+- name: Platform
+  key: platform_id
+- name: Chain
+  key: chain_database_id
+- name: UnderlyingAsset
+  key: token_id
+- name: Reward
+  key: reward_id
+- name: Performance
+  key: vault_performance_id
+- name: AllocationSnapshot
+  key: id
+- name: AllocationPeriod
+  key: allocation_period_id
+- name: PerformanceNote
+  key: vault_performance_note_id
+relationships:
+- from: Vault
+  to: Curator
+  type: has_many
+  via: curators
+- from: Vault
+  to: Platform
+  type: belongs_to
+  via: platform_id
+- from: Vault
+  to: Chain
+  type: belongs_to
+  via: chain_database_id
+- from: Vault
+  to: UnderlyingAsset
+  type: belongs_to
+  via: underlying_asset_id
+- from: Vault
+  to: Reward
+  type: has_many
+  via: rewards
+- from: Vault
+  to: Performance
+  type: has_one
+  via: latest_performance
+- from: AllocationSnapshot
+  to: Vault
+  type: belongs_to
+  via: vault_address
+- from: AllocationSnapshot
+  to: AllocationPeriod
+  type: belongs_to
+  via: period-id
+- from: PerformanceNote
+  to: Vault
+  type: belongs_to
+  via: vault_performance_note_id

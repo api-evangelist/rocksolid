@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.rocksolid.network/integration/api
+versioning:
+  scheme: api-version-field
+  current: v1
+  note: >-
+    API self-identifies as "API Version: v1, Status: Active" in the docs; the
+    HTTP base path is /api/ (no version segment). Last documented update
+    2025-09-11.
+  docs: https://docs.rocksolid.network/integration/api
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No deprecation policy or RFC 8594 Sunset/Deprecation header support published.
+sla:
+  url: null
+  note: No published SLA / uptime target.
+status_page: null
+caching:
+  note: >-
+    Most endpoints cache 5 minutes (300s); the allocations endpoint sends
+    Cache-Control s-maxage=300, stale-while-revalidate=300. allocation-periods
+    has no explicit caching.
+audits:
+  url: https://docs.rocksolid.network/audits/audits
+  note: >-
+    Smart-contract audits (Lagoon ERC-7540 v0.5.0/v0.5.1) and a Hashlock
+    penetration test + MPC-wallet policy review are published.
+deprecated_operations: []

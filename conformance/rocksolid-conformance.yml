@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/rocksolid-vaults-openapi.yml
+docs: https://docs.rocksolid.network/integration
+standards:
+- id: rest-json
+  conforms: true
+  evidence: HTTP GET endpoints returning application/json
+- id: openapi-3.1
+  conforms: true
+  evidence: Captured as OpenAPI 3.1 in openapi/rocksolid-vaults-openapi.yml
+- id: oauth2
+  conforms: false
+  evidence: No OAuth2 security scheme; public read-only API
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Custom {error, message, timestamp, details} envelope, not application/problem+json
+- id: erc-7540-async-vault
+  conforms: true
+  evidence: RockSolid vaults are ERC-7540 Asynchronous Tokenized Vaults (Lagoon implementation)
+- id: erc-4626-tokenized-vault
+  conforms: true
+  evidence: Standard ERC-4626 methods (convertToAssets/convertToShares/totalAssets) documented for integration
+- id: erc-20
+  conforms: true
+  evidence: Vault shares are ERC-20 tokens (balanceOf/totalSupply/symbol/name)

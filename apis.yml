@@ -1,7 +1,31 @@
 aid: rocksolid
-name: Rocksolid
-description: Rocksolid is a company surfaced as a portfolio company of kindred-ventures and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+accessModel:
+  pricing: unknown
+  onboarding: open
+  trial: false
+  try_now: false
+  public: true
+  label: Open access
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rocksolid.png
+name: RockSolid
+description: >-
+  RockSolid (rocksolid.network) is a DeFi platform offering actively managed,
+  institutional-grade liquid vaults. It lets institutions, protocols and projects
+  launch tailored, white-label vault products that give their communities
+  streamlined access to higher yields and DeFi strategies typically reserved for
+  large investors, sourcing yield from protocols such as Uniswap, Aave, Morpho
+  and Yearn. Vaults are built on the ERC-7540 Asynchronous Tokenized Vault
+  standard (Lagoon Finance implementation) and are audited. RockSolid publishes a
+  public, read-only REST Vaults API that exposes vault metadata, curators,
+  rewards, latest performance (NAV, APR/APY, TVL), strategy allocation snapshots
+  by period, and calculated APR/TVL — plus smart-contract integration docs for
+  on-chain deposit/redeem. Added to the API Evangelist network as a portfolio
+  company of Kindred Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/rocksolid/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,15 +35,103 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- DeFi
+- Decentralized Finance
+- Liquid Vaults
+- Yield
+- Staking
+- Web3
+- Blockchain
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: rocksolid:rocksolid-allocations-api
+  name: RockSolid Allocations API
+  description: Strategy allocation snapshots and periods
+  humanURL: https://docs.rocksolid.network/integration/api
+  baseURL: https://app-integration.rocksolid.network/api
+  tags:
+  - Allocations
+  properties:
+  - type: OpenAPI
+    url: openapi/rocksolid-allocations-api-openapi.yml
+  - type: Authentication
+    url: authentication/rocksolid-authentication.yml
+- aid: rocksolid:rocksolid-performance-api
+  name: RockSolid Performance API
+  description: APR and TVL calculations
+  humanURL: https://docs.rocksolid.network/integration/api
+  baseURL: https://app-integration.rocksolid.network/api
+  tags:
+  - Performance
+  properties:
+  - type: OpenAPI
+    url: openapi/rocksolid-performance-api-openapi.yml
+  - type: Authentication
+    url: authentication/rocksolid-authentication.yml
+- aid: rocksolid:rocksolid-vaults-api
+  name: RockSolid Vaults API
+  description: Vault catalogue, metadata and performance
+  humanURL: https://docs.rocksolid.network/integration/api
+  baseURL: https://app-integration.rocksolid.network/api
+  tags:
+  - Vaults
+  properties:
+  - type: OpenAPI
+    url: openapi/rocksolid-vaults-api-openapi.yml
+  - type: Authentication
+    url: authentication/rocksolid-authentication.yml
 common:
 - type: Website
   url: https://rocksolid.network/
+- type: DeveloperPortal
+  url: https://docs.rocksolid.network
+- type: Documentation
+  url: https://docs.rocksolid.network
+- type: APIReference
+  url: https://docs.rocksolid.network/integration/api
+- type: GettingStarted
+  url: https://docs.rocksolid.network/integration/onboarding-guide
+- type: Blog
+  url: https://blog.rocksolid.network
+- type: GitHubOrganization
+  url: https://github.com/rocksolid-network
+- type: Support
+  url: https://rocksolid.network/contact#contact-form
+- type: TermsOfService
+  url: https://rocksolid.network/terms#tos
+- type: SignUp
+  url: https://app.rocksolid.network
+- type: Authentication
+  url: authentication/rocksolid-authentication.yml
+- type: ErrorCatalog
+  url: errors/rocksolid-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/rocksolid-lifecycle.yml
+- type: Conventions
+  url: conventions/rocksolid-conventions.yml
+- type: Conformance
+  url: conformance/rocksolid-conformance.yml
+- type: DataModel
+  url: data-model/rocksolid-data-model.yml
+- type: MCPServer
+  url: mcp/rocksolid-mcp.yml
+- type: LLMsTxt
+  url: llms/rocksolid-llms.txt
+- type: Overlay
+  url: overlays/rocksolid-vaults-overlay.yaml
+- type: DomainSecurity
+  url: security/rocksolid-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1
