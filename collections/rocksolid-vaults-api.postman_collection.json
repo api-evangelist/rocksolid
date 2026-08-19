@@ -1,0 +1,313 @@
+{
+  "item": [
+    {
+      "id": "b7b3fd6a-b3b9-4c49-bf82-2869f3280317",
+      "name": "Vaults",
+      "description": {
+        "content": "Vault catalogue, metadata and performance",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a7be1b3-ab15-4dbe-a045-bd2b1bde9aac",
+          "name": "List all vaults",
+          "request": {
+            "name": "List all vaults",
+            "description": {
+              "content": "Returns comprehensive information for all available vaults including metadata, performance data, strategy allocations, and curator information. Use the is_active field to filter visible vaults.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vaults"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1658862b-2649-4234-be89-6c704856be0e",
+              "name": "Array of vaults",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"vault_id\": 9821,\n    \"name\": \"string\",\n    \"symbol\": \"string\",\n    \"description\": \"string\",\n    \"details\": \"string\",\n    \"asset_logo_url\": \"string\",\n    \"asset_name\": \"string\",\n    \"asset_decimals\": 399,\n    \"share_logo_url\": \"string\",\n    \"share_name\": \"string\",\n    \"share_decimals\": 8272,\n    \"vault_address\": \"string\",\n    \"chainId\": 7875,\n    \"aum_fee\": 1303,\n    \"performance_fee\": 4424,\n    \"redemption_period\": \"48-72h\",\n    \"platform_id\": 5120,\n    \"chain_database_id\": 6080,\n    \"underlying_asset_id\": 8443,\n    \"audit_url\": \"string\",\n    \"priority\": 8779,\n    \"is_active\": false,\n    \"wallet_address\": \"string\",\n    \"is_instant_withdrawal_enabled\": true,\n    \"url_slug\": \"string\",\n    \"debank_url\": \"string\",\n    \"curators\": [\n      {\n        \"curator_id\": 5457,\n        \"name\": \"string\",\n        \"logo_url\": \"string\",\n        \"website_url\": \"string\"\n      },\n      {\n        \"curator_id\": 3494,\n        \"name\": \"string\",\n        \"logo_url\": \"string\",\n        \"website_url\": \"string\"\n      }\n    ],\n    \"platform\": {\n      \"platform_id\": 1632,\n      \"name\": \"string\",\n      \"logo_url\": \"string\"\n    },\n    \"chain\": {\n      \"chain_database_id\": 1809,\n      \"name\": \"string\",\n      \"logo_url\": \"string\",\n      \"chain_id\": 2094,\n      \"explorer_url\": \"string\"\n    },\n    \"underlying_asset\": {\n      \"token_id\": 8946,\n      \"name\": \"string\",\n      \"icon\": \"string\",\n      \"symbol\": \"string\",\n      \"address\": \"string\",\n      \"decimals\": 4314,\n      \"chain_database_id\": 6753,\n      \"price_feed_id\": \"string\",\n      \"price_feed_token\": \"string\",\n      \"is_active\": true,\n      \"to_usd_oracle_contract\": \"string\",\n      \"to_eth_oracle_contract\": \"string\",\n      \"to_eth_price_feed_id\": \"string\",\n      \"is_yield_bearing\": true,\n      \"yield_apr_endpoint\": \"string\"\n    },\n    \"rewards\": [\n      {\n        \"reward_id\": 5774,\n        \"name\": \"string\",\n        \"logo\": \"string\",\n        \"classification\": \"string\",\n        \"is_active\": true\n      },\n      {\n        \"reward_id\": 6694,\n        \"name\": \"string\",\n        \"logo\": \"string\",\n        \"classification\": \"string\",\n        \"is_active\": true\n      }\n    ],\n    \"latest_performance\": {\n      \"vault_id\": 1958,\n      \"vault_performance_id\": 8875,\n      \"recorded_on\": \"string\",\n      \"per_share_nav\": \"string\",\n      \"outstanding_shares\": \"string\",\n      \"estimated_apy\": 5693.121416213109,\n      \"total_supply\": \"string\",\n      \"total_assets\": \"string\",\n      \"share_value_against_underlying_raw\": \"string\",\n      \"share_value_against_eth_raw\": \"string\",\n      \"shares_per_underlying_asset\": \"string\",\n      \"shares_per_eth\": \"string\"\n    },\n    \"pendingApr\": 1576.8004283095981,\n    \"earnedApr\": 1284.6201029707483,\n    \"totalApr\": 957.1539426549913,\n    \"protocolFeePercent\": 688.541829116166,\n    \"underlyingAssetGrowthRatePercent\": 4725.442051348096\n  },\n  {\n    \"vault_id\": 1593,\n    \"name\": \"string\",\n    \"symbol\": \"string\",\n    \"description\": \"string\",\n    \"details\": \"string\",\n    \"asset_logo_url\": \"string\",\n    \"asset_name\": \"string\",\n    \"asset_decimals\": 249,\n    \"share_logo_url\": \"string\",\n    \"share_name\": \"string\",\n    \"share_decimals\": 8221,\n    \"vault_address\": \"string\",\n    \"chainId\": 3440,\n    \"aum_fee\": 5676,\n    \"performance_fee\": 5062,\n    \"redemption_period\": \"48-72h\",\n    \"platform_id\": 8861,\n    \"chain_database_id\": 3028,\n    \"underlying_asset_id\": 8423,\n    \"audit_url\": \"string\",\n    \"priority\": 2515,\n    \"is_active\": false,\n    \"wallet_address\": \"string\",\n    \"is_instant_withdrawal_enabled\": true,\n    \"url_slug\": \"string\",\n    \"debank_url\": \"string\",\n    \"curators\": [\n      {\n        \"curator_id\": 9124,\n        \"name\": \"string\",\n        \"logo_url\": \"string\",\n        \"website_url\": \"string\"\n      },\n      {\n        \"curator_id\": 7455,\n        \"name\": \"string\",\n        \"logo_url\": \"string\",\n        \"website_url\": \"string\"\n      }\n    ],\n    \"platform\": {\n      \"platform_id\": 8067,\n      \"name\": \"string\",\n      \"logo_url\": \"string\"\n    },\n    \"chain\": {\n      \"chain_database_id\": 3791,\n      \"name\": \"string\",\n      \"logo_url\": \"string\",\n      \"chain_id\": 658,\n      \"explorer_url\": \"string\"\n    },\n    \"underlying_asset\": {\n      \"token_id\": 6895,\n      \"name\": \"string\",\n      \"icon\": \"string\",\n      \"symbol\": \"string\",\n      \"address\": \"string\",\n      \"decimals\": 8305,\n      \"chain_database_id\": 2808,\n      \"price_feed_id\": \"string\",\n      \"price_feed_token\": \"string\",\n      \"is_active\": true,\n      \"to_usd_oracle_contract\": \"string\",\n      \"to_eth_oracle_contract\": \"string\",\n      \"to_eth_price_feed_id\": \"string\",\n      \"is_yield_bearing\": false,\n      \"yield_apr_endpoint\": \"string\"\n    },\n    \"rewards\": [\n      {\n        \"reward_id\": 7365,\n        \"name\": \"string\",\n        \"logo\": \"string\",\n        \"classification\": \"string\",\n        \"is_active\": false\n      },\n      {\n        \"reward_id\": 93,\n        \"name\": \"string\",\n        \"logo\": \"string\",\n        \"classification\": \"string\",\n        \"is_active\": false\n      }\n    ],\n    \"latest_performance\": {\n      \"vault_id\": 4755,\n      \"vault_performance_id\": 1521,\n      \"recorded_on\": \"string\",\n      \"per_share_nav\": \"string\",\n      \"outstanding_shares\": \"string\",\n      \"estimated_apy\": 5845.907392972353,\n      \"total_supply\": \"string\",\n      \"total_assets\": \"string\",\n      \"share_value_against_underlying_raw\": \"string\",\n      \"share_value_against_eth_raw\": \"string\",\n      \"shares_per_underlying_asset\": \"string\",\n      \"shares_per_eth\": \"string\"\n    },\n    \"pendingApr\": 3810.9035424289405,\n    \"earnedApr\": 1699.083362278011,\n    \"totalApr\": 6143.355312009987,\n    \"protocolFeePercent\": 9661.973831542491,\n    \"underlyingAssetGrowthRatePercent\": 4348.690024317946\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09dc2d03-3468-4706-ba2c-a92fcd593c03",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"timestamp\": \"1977-06-22T13:32:56.283Z\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "931cfea0-b49b-4f1c-be18-4f6cf7071b14",
+          "name": "Get a vault by address",
+          "request": {
+            "name": "Get a vault by address",
+            "description": {
+              "content": "Returns detailed information for a specific vault identified by its contract address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) Vault contract address (normalized to lowercase)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3126972d-8d6a-4fb7-a9c8-07befe197c13",
+              "name": "Vault detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault contract address (normalized to lowercase)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vault_id\": 91,\n  \"name\": \"string\",\n  \"symbol\": \"string\",\n  \"description\": \"string\",\n  \"details\": \"string\",\n  \"asset_logo_url\": \"string\",\n  \"asset_name\": \"string\",\n  \"asset_decimals\": 6086,\n  \"share_logo_url\": \"string\",\n  \"share_name\": \"string\",\n  \"share_decimals\": 4592,\n  \"vault_address\": \"string\",\n  \"chainId\": 9980,\n  \"aum_fee\": 6084,\n  \"performance_fee\": 9932,\n  \"redemption_period\": \"48-72h\",\n  \"platform_id\": 1936,\n  \"chain_database_id\": 5488,\n  \"underlying_asset_id\": 5064,\n  \"audit_url\": \"string\",\n  \"priority\": 9432,\n  \"is_active\": true,\n  \"wallet_address\": \"string\",\n  \"is_instant_withdrawal_enabled\": false,\n  \"url_slug\": \"string\",\n  \"debank_url\": \"string\",\n  \"curators\": [\n    {\n      \"curator_id\": 6782,\n      \"name\": \"string\",\n      \"logo_url\": \"string\",\n      \"website_url\": \"string\"\n    },\n    {\n      \"curator_id\": 3573,\n      \"name\": \"string\",\n      \"logo_url\": \"string\",\n      \"website_url\": \"string\"\n    }\n  ],\n  \"platform\": {\n    \"platform_id\": 2485,\n    \"name\": \"string\",\n    \"logo_url\": \"string\"\n  },\n  \"chain\": {\n    \"chain_database_id\": 7622,\n    \"name\": \"string\",\n    \"logo_url\": \"string\",\n    \"chain_id\": 2129,\n    \"explorer_url\": \"string\"\n  },\n  \"underlying_asset\": {\n    \"token_id\": 9407,\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"symbol\": \"string\",\n    \"address\": \"string\",\n    \"decimals\": 5772,\n    \"chain_database_id\": 3059,\n    \"price_feed_id\": \"string\",\n    \"price_feed_token\": \"string\",\n    \"is_active\": false,\n    \"to_usd_oracle_contract\": \"string\",\n    \"to_eth_oracle_contract\": \"string\",\n    \"to_eth_price_feed_id\": \"string\",\n    \"is_yield_bearing\": false,\n    \"yield_apr_endpoint\": \"string\"\n  },\n  \"rewards\": [\n    {\n      \"reward_id\": 7534,\n      \"name\": \"string\",\n      \"logo\": \"string\",\n      \"classification\": \"string\",\n      \"is_active\": true\n    },\n    {\n      \"reward_id\": 3382,\n      \"name\": \"string\",\n      \"logo\": \"string\",\n      \"classification\": \"string\",\n      \"is_active\": true\n    }\n  ],\n  \"latest_performance\": {\n    \"vault_id\": 5295,\n    \"vault_performance_id\": 411,\n    \"recorded_on\": \"string\",\n    \"per_share_nav\": \"string\",\n    \"outstanding_shares\": \"string\",\n    \"estimated_apy\": 4262.272736474572,\n    \"total_supply\": \"string\",\n    \"total_assets\": \"string\",\n    \"share_value_against_underlying_raw\": \"string\",\n    \"share_value_against_eth_raw\": \"string\",\n    \"shares_per_underlying_asset\": \"string\",\n    \"shares_per_eth\": \"string\"\n  },\n  \"pendingApr\": 7647.642342446461,\n  \"earnedApr\": 6244.172892777745,\n  \"totalApr\": 2584.2326513055314,\n  \"protocolFeePercent\": 758.45580241928,\n  \"underlyingAssetGrowthRatePercent\": 4668.379341472399\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ffb6674-83ba-40ac-a762-f175165575ec",
+              "name": "Vault not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault contract address (normalized to lowercase)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"timestamp\": \"1977-06-22T13:32:56.283Z\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be64a8f2-2340-49e6-bb80-7d6f53b3697d",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault contract address (normalized to lowercase)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"timestamp\": \"1977-06-22T13:32:56.283Z\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app-integration.rocksolid.network/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "73357639-c5cc-40d1-8e06-fefaf3c409fa",
+    "name": "RockSolid Allocations Vaults API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only REST API for the RockSolid liquid-vaults DeFi platform. It exposes the catalogue of RockSolid vaults with rich metadata (name, symbol, share and underlying-asset details, fees, curators, rewards, chain/platform info), latest performance data (per-share NAV, outstanding shares, estimated APR/APY, total assets), strategy allocation snapshots per allocation period, and calculated APR/TVL figures (with additional rETH-vs-ETH APR breakdowns for rETH vaults). The API is publicly readable and CORS-restricted to an allow list of origins; on-chain deposit/withdraw flows are handled directly against the ERC-7540 vault smart contracts (see the smart-contracts integration docs) rather than through this API. Faithfully transcribed by the API Evangelist enrichment pipeline from the published RockSolid integration API docs and the live production endpoint.\n\nContact Support:\n Name: RockSolid\n Email: product@rocksolid.network",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RockSolid Vaults Allocations API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Allocations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vault allocation snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-integration.rocksolid.network/api/vaults/:vault_address/allocations",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path",
+                "description": "Vault contract address (normalized to lowercase)"
+              },
+              {
+                "name": "period-id",
+                "value": "",
+                "type": "query",
+                "description": "Allocation period ID"
+              }
+            ]
+          },
+          "docs": "Returns allocation snapshots for a specific vault and allocation period, including an optional performance note. Allocation and APR values are returned as decimals (e.g. 0.20 = 20%)."
+        },
+        {
+          "info": {
+            "name": "List allocation periods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-integration.rocksolid.network/api/vaults/allocation-periods"
+          },
+          "docs": "Returns all available allocation periods for use in date selectors and period navigation, ordered by period_start descending."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

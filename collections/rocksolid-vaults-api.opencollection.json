@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RockSolid Allocations Vaults API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vaults",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all vaults",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-integration.rocksolid.network/api/vaults"
+          },
+          "docs": "Returns comprehensive information for all available vaults including metadata, performance data, strategy allocations, and curator information. Use the is_active field to filter visible vaults."
+        },
+        {
+          "info": {
+            "name": "Get a vault by address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-integration.rocksolid.network/api/vaults/:vault_address",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path",
+                "description": "Vault contract address (normalized to lowercase)"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific vault identified by its contract address."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

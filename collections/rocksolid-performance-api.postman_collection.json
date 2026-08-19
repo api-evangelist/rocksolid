@@ -1,0 +1,284 @@
+{
+  "item": [
+    {
+      "id": "36d200f3-3696-4ab8-af97-e6d31efd36d2",
+      "name": "Performance",
+      "description": {
+        "content": "APR and TVL calculations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c735c22-fbc4-44b0-860c-0f908a7723a7",
+          "name": "Get vault APR and TVL",
+          "request": {
+            "name": "Get vault APR and TVL",
+            "description": {
+              "content": "Returns calculated Annual Percentage Rate (APR) and Total Value Locked (TVL) for a specific vault, with enhanced APR breakdowns against ETH for rETH vaults. APR calculation adapts to vault maturity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "apr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "days_to_compute",
+                  "value": "14",
+                  "description": "Number of days to use for APR calculation (must be positive)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) Vault contract address (normalized to lowercase)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef8a1423-5f2c-4750-8c72-b7ca1e51555f",
+              "name": "APR and TVL",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "apr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "days_to_compute",
+                      "value": "14"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault contract address (normalized to lowercase)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tvlRaw\": \"string\",\n  \"apr\": \"string\",\n  \"baseAprAgainstEth\": \"string\",\n  \"strategyAprAgainstEth\": \"string\",\n  \"totalAprAgainstEth\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0605d73c-0fa5-4061-9ac2-8e68f9d1236a",
+              "name": "Invalid days_to_compute parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "apr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "days_to_compute",
+                      "value": "14"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault contract address (normalized to lowercase)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"timestamp\": \"1961-10-25T10:26:15.821Z\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa8662b4-c4b4-4e2c-9508-590063ae8f7e",
+              "name": "Vault not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "apr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "days_to_compute",
+                      "value": "14"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault contract address (normalized to lowercase)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"timestamp\": \"1961-10-25T10:26:15.821Z\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "049f21dd-ea1d-45c4-9e73-3b740756d9d7",
+              "name": "Subgraph query failed, no events found, or server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "apr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "days_to_compute",
+                      "value": "14"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault contract address (normalized to lowercase)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"timestamp\": \"1961-10-25T10:26:15.821Z\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app-integration.rocksolid.network/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "87494cba-2c2f-45ea-9231-0f09c8f38d4f",
+    "name": "RockSolid Vaults Allocations Performance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only REST API for the RockSolid liquid-vaults DeFi platform. It exposes the catalogue of RockSolid vaults with rich metadata (name, symbol, share and underlying-asset details, fees, curators, rewards, chain/platform info), latest performance data (per-share NAV, outstanding shares, estimated APR/APY, total assets), strategy allocation snapshots per allocation period, and calculated APR/TVL figures (with additional rETH-vs-ETH APR breakdowns for rETH vaults). The API is publicly readable and CORS-restricted to an allow list of origins; on-chain deposit/withdraw flows are handled directly against the ERC-7540 vault smart contracts (see the smart-contracts integration docs) rather than through this API. Faithfully transcribed by the API Evangelist enrichment pipeline from the published RockSolid integration API docs and the live production endpoint.\n\nContact Support:\n Name: RockSolid\n Email: product@rocksolid.network",
+      "type": "text/plain"
+    }
+  }
+}

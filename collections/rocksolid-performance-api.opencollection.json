@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RockSolid Vaults Allocations Performance API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Performance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vault APR and TVL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-integration.rocksolid.network/api/vaults/:vault_address/apr",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path",
+                "description": "Vault contract address (normalized to lowercase)"
+              },
+              {
+                "name": "days_to_compute",
+                "value": "",
+                "type": "query",
+                "description": "Number of days to use for APR calculation (must be positive)"
+              }
+            ]
+          },
+          "docs": "Returns calculated Annual Percentage Rate (APR) and Total Value Locked (TVL) for a specific vault, with enhanced APR breakdowns against ETH for rETH vaults. APR calculation adapts to vault maturity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

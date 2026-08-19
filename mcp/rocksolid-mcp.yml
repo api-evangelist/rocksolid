@@ -2,10 +2,8 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/rocksolid-vaults-openapi.yml
-note: >-
-  No official hosted/remote MCP server was found for RockSolid. This is a
-  candidate tool surface derived one-to-one from the documented Vaults API
-  operations; all operations are read-only.
+note: No official hosted/remote MCP server was found for RockSolid. This is a candidate tool surface derived
+  one-to-one from the documented Vaults API operations; all operations are read-only.
 server:
   name: rocksolid-vaults
   transport: http
@@ -25,3 +23,9 @@ tools:
 - name: get_vault_apr
   description: Get calculated APR and TVL for a vault, with rETH-vs-ETH breakdowns.
   source_operation: openapi/rocksolid-vaults-openapi.yml#getVaultApr
+deployment:
+  mode: none
+  verified: derived
+  tools: 5
+  checked: '2026-08-12'
+  source: catalog MCP census

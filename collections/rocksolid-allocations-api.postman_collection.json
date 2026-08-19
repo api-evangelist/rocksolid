@@ -1,0 +1,392 @@
+{
+  "item": [
+    {
+      "id": "9251d058-46b4-4b55-853a-2cd28a04dfeb",
+      "name": "Allocations",
+      "description": {
+        "content": "Strategy allocation snapshots and periods",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58fa39f0-e962-4b53-8ba2-c87943e96308",
+          "name": "Get vault allocation snapshots",
+          "request": {
+            "name": "Get vault allocation snapshots",
+            "description": {
+              "content": "Returns allocation snapshots for a specific vault and allocation period, including an optional performance note. Allocation and APR values are returned as decimals (e.g. 0.20 = 20%).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "allocations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "period-id",
+                  "value": "<integer>",
+                  "description": "(Required) Allocation period ID"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) Vault contract address (normalized to lowercase)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1403c209-1212-4fec-b3ce-d68fd9425388",
+              "name": "Allocation snapshots",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "allocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period-id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault contract address (normalized to lowercase)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"snapshots\": [\n    {\n      \"id\": \"string\",\n      \"strategy\": \"string\",\n      \"description\": \"string\",\n      \"logoUrl\": \"string\",\n      \"allocation\": 3087.21771189011,\n      \"strategyApr\": 2058.908187907812,\n      \"ongoingApr\": 1698.435060550647,\n      \"pendingApr\": 8673.49502506772,\n      \"totalApr\": 1281.025704383889\n    },\n    {\n      \"id\": \"string\",\n      \"strategy\": \"string\",\n      \"description\": \"string\",\n      \"logoUrl\": \"string\",\n      \"allocation\": 915.9680526390046,\n      \"strategyApr\": 2787.0637841500265,\n      \"ongoingApr\": 6110.103328622702,\n      \"pendingApr\": 9992.776412997762,\n      \"totalApr\": 3984.179063499306\n    }\n  ],\n  \"performance_note\": {\n    \"vault_performance_note_id\": 300,\n    \"title\": \"string\",\n    \"content\": \"string\",\n    \"url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84f948a0-ef01-49ab-8c0b-232e537fb611",
+              "name": "Missing or invalid period-id parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "allocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period-id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault contract address (normalized to lowercase)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"timestamp\": \"1996-02-13T07:18:36.957Z\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cec53716-a6c5-4d5a-9fe7-a50c13846681",
+              "name": "Vault or allocation period not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "allocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period-id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault contract address (normalized to lowercase)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"timestamp\": \"1996-02-13T07:18:36.957Z\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88ac3b00-df95-492c-b141-6f8afe2eb5cb",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "allocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period-id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault contract address (normalized to lowercase)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"timestamp\": \"1996-02-13T07:18:36.957Z\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4536ce50-6984-4d96-933f-5187d7725c97",
+          "name": "List allocation periods",
+          "request": {
+            "name": "List allocation periods",
+            "description": {
+              "content": "Returns all available allocation periods for use in date selectors and period navigation, ordered by period_start descending.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vaults",
+                "allocation-periods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d77465a-8b21-4af7-a10a-4f94f4b147ff",
+              "name": "Allocation periods",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "allocation-periods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"periods\": [\n    {\n      \"allocation_period_id\": 3238,\n      \"period_start\": 778,\n      \"period_end\": 7765\n    },\n    {\n      \"allocation_period_id\": 1090,\n      \"period_start\": 7871,\n      \"period_end\": 6530\n    }\n  ],\n  \"total\": 5934\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5702a23e-4abc-4c68-aaca-c94f84123be6",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "allocation-periods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"timestamp\": \"1996-02-13T07:18:36.957Z\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app-integration.rocksolid.network/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "126c09a2-a3ca-42a3-aa9b-2ba6fdd30c94",
+    "name": "RockSolid Vaults Allocations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only REST API for the RockSolid liquid-vaults DeFi platform. It exposes the catalogue of RockSolid vaults with rich metadata (name, symbol, share and underlying-asset details, fees, curators, rewards, chain/platform info), latest performance data (per-share NAV, outstanding shares, estimated APR/APY, total assets), strategy allocation snapshots per allocation period, and calculated APR/TVL figures (with additional rETH-vs-ETH APR breakdowns for rETH vaults). The API is publicly readable and CORS-restricted to an allow list of origins; on-chain deposit/withdraw flows are handled directly against the ERC-7540 vault smart contracts (see the smart-contracts integration docs) rather than through this API. Faithfully transcribed by the API Evangelist enrichment pipeline from the published RockSolid integration API docs and the live production endpoint.\n\nContact Support:\n Name: RockSolid\n Email: product@rocksolid.network",
+      "type": "text/plain"
+    }
+  }
+}
