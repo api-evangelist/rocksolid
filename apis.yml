@@ -81,6 +81,8 @@ apis:
   humanURL: https://docs.rocksolid.network/integration/api
   baseURL: https://app-integration.rocksolid.network/api
   tags:
+  - Vault
+  tags_raw:
   - Vaults
   properties:
   - type: OpenAPI
