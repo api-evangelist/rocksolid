@@ -1,11 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: RockSolid Vaults Allocations Performance API
+  title: RockSolid Vaults Performance API
   version: '1.0'
   x-api-version: v1
   x-last-updated: '2025-09-11'
   x-status: Active
-  description: Read-only REST API for the RockSolid liquid-vaults DeFi platform. It exposes the catalogue of RockSolid vaults with rich metadata (name, symbol, share and underlying-asset details, fees, curators, rewards, chain/platform info), latest performance data (per-share NAV, outstanding shares, estimated APR/APY, total assets), strategy allocation snapshots per allocation period, and calculated APR/TVL figures (with additional rETH-vs-ETH APR breakdowns for rETH vaults). The API is publicly readable and CORS-restricted to an allow list of origins; on-chain deposit/withdraw flows are handled directly against the ERC-7540 vault smart contracts (see the smart-contracts integration docs) rather than through this API. Faithfully transcribed by the API Evangelist enrichment pipeline from the published RockSolid integration API docs and the live production endpoint.
+  description: Read-only REST API for the RockSolid liquid-vaults DeFi platform.
   contact:
     name: RockSolid
     email: product@rocksolid.network
@@ -66,31 +66,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    VaultAddress:
-      name: vault_address
-      in: path
-      required: true
-      description: Vault contract address (normalized to lowercase)
-      schema:
-        type: string
-        example: '0xba71097e426983d840569edfa1a01396b56d86ad'
   schemas:
-    Error:
-      type: object
-      description: Standard error envelope returned by the API.
-      properties:
-        error:
-          type: string
-          description: Brief error description
-        message:
-          type: string
-          description: Detailed error message
-        timestamp:
-          type: string
-          format: date-time
-        details:
-          type: object
     AprResponse:
       type: object
       properties:
@@ -106,3 +82,27 @@ components:
           type: string
         totalAprAgainstEth:
           type: string
+    Error:
+      type: object
+      description: Standard error envelope returned by the API.
+      properties:
+        error:
+          type: string
+          description: Brief error description
+        message:
+          type: string
+          description: Detailed error message
+        timestamp:
+          type: string
+          format: date-time
+        details:
+          type: object
+  parameters:
+    VaultAddress:
+      name: vault_address
+      in: path
+      required: true
+      description: Vault contract address (normalized to lowercase)
+      schema:
+        type: string
+        example: '0xba71097e426983d840569edfa1a01396b56d86ad'

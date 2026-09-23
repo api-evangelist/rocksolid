@@ -1,11 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: RockSolid Vaults Allocations API
   version: '1.0'
   x-api-version: v1
   x-last-updated: '2025-09-11'
   x-status: Active
-  description: Read-only REST API for the RockSolid liquid-vaults DeFi platform. It exposes the catalogue of RockSolid vaults with rich metadata (name, symbol, share and underlying-asset details, fees, curators, rewards, chain/platform info), latest performance data (per-share NAV, outstanding shares, estimated APR/APY, total assets), strategy allocation snapshots per allocation period, and calculated APR/TVL figures (with additional rETH-vs-ETH APR breakdowns for rETH vaults). The API is publicly readable and CORS-restricted to an allow list of origins; on-chain deposit/withdraw flows are handled directly against the ERC-7540 vault smart contracts (see the smart-contracts integration docs) rather than through this API. Faithfully transcribed by the API Evangelist enrichment pipeline from the published RockSolid integration API docs and the live production endpoint.
+  description: Read-only REST API for the RockSolid liquid-vaults DeFi platform.
   contact:
     name: RockSolid
     email: product@rocksolid.network
@@ -85,26 +85,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    AllocationPeriodsResponse:
-      type: object
-      properties:
-        periods:
-          type: array
-          items:
-            $ref: '#/components/schemas/AllocationPeriodItem'
-        total:
-          type: integer
-    AllocationPeriodItem:
-      type: object
-      properties:
-        allocation_period_id:
-          type: integer
-        period_start:
-          type: integer
-          description: Unix timestamp
-        period_end:
-          type: integer
-          description: Unix timestamp
     AllocationSnapshot:
       type: object
       properties:
@@ -134,17 +114,6 @@ components:
           - 'null'
         totalApr:
           type: number
-    PerformanceNote:
-      type: object
-      properties:
-        vault_performance_note_id:
-          type: integer
-        title:
-          type: string
-        content:
-          type: string
-        url:
-          type: string
     Error:
       type: object
       description: Standard error envelope returned by the API.
@@ -160,6 +129,37 @@ components:
           format: date-time
         details:
           type: object
+    AllocationPeriodsResponse:
+      type: object
+      properties:
+        periods:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllocationPeriodItem'
+        total:
+          type: integer
+    AllocationPeriodItem:
+      type: object
+      properties:
+        allocation_period_id:
+          type: integer
+        period_start:
+          type: integer
+          description: Unix timestamp
+        period_end:
+          type: integer
+          description: Unix timestamp
+    PerformanceNote:
+      type: object
+      properties:
+        vault_performance_note_id:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+        url:
+          type: string
     AllocationSnapshotsResponse:
       type: object
       properties:
