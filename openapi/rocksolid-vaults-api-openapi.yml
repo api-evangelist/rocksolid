@@ -75,6 +75,33 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Performance:
+      type: object
+      properties:
+        vault_id:
+          type: integer
+        vault_performance_id:
+          type: integer
+        recorded_on:
+          type: string
+        per_share_nav:
+          type: string
+        outstanding_shares:
+          type: string
+        estimated_apy:
+          type: number
+        total_supply:
+          type: string
+        total_assets:
+          type: string
+        share_value_against_underlying_raw:
+          type: string
+        share_value_against_eth_raw:
+          type: string
+        shares_per_underlying_asset:
+          type: string
+        shares_per_eth:
+          type: string
     UnderlyingAsset:
       type: object
       properties:
@@ -116,6 +143,29 @@ components:
           type:
           - string
           - 'null'
+    Reward:
+      type: object
+      properties:
+        reward_id:
+          type: integer
+        name:
+          type: string
+        logo:
+          type: string
+        classification:
+          type: string
+          description: Token | Points | NFT
+        is_active:
+          type: boolean
+    Platform:
+      type: object
+      properties:
+        platform_id:
+          type: integer
+        name:
+          type: string
+        logo_url:
+          type: string
     Chain:
       type: object
       properties:
@@ -144,67 +194,6 @@ components:
           format: date-time
         details:
           type: object
-    Platform:
-      type: object
-      properties:
-        platform_id:
-          type: integer
-        name:
-          type: string
-        logo_url:
-          type: string
-    Performance:
-      type: object
-      properties:
-        vault_id:
-          type: integer
-        vault_performance_id:
-          type: integer
-        recorded_on:
-          type: string
-        per_share_nav:
-          type: string
-        outstanding_shares:
-          type: string
-        estimated_apy:
-          type: number
-        total_supply:
-          type: string
-        total_assets:
-          type: string
-        share_value_against_underlying_raw:
-          type: string
-        share_value_against_eth_raw:
-          type: string
-        shares_per_underlying_asset:
-          type: string
-        shares_per_eth:
-          type: string
-    Curator:
-      type: object
-      properties:
-        curator_id:
-          type: integer
-        name:
-          type: string
-        logo_url:
-          type: string
-        website_url:
-          type: string
-    Reward:
-      type: object
-      properties:
-        reward_id:
-          type: integer
-        name:
-          type: string
-        logo:
-          type: string
-        classification:
-          type: string
-          description: Token | Points | NFT
-        is_active:
-          type: boolean
     Vault:
       type: object
       description: A RockSolid liquid vault with metadata, related entities and latest performance.
@@ -297,6 +286,17 @@ components:
           type: number
         underlyingAssetGrowthRatePercent:
           type: number
+    Curator:
+      type: object
+      properties:
+        curator_id:
+          type: integer
+        name:
+          type: string
+        logo_url:
+          type: string
+        website_url:
+          type: string
   parameters:
     VaultAddress:
       name: vault_address

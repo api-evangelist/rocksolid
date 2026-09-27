@@ -114,6 +114,35 @@ components:
           - 'null'
         totalApr:
           type: number
+    AllocationSnapshotsResponse:
+      type: object
+      properties:
+        snapshots:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllocationSnapshot'
+        performance_note:
+          $ref: '#/components/schemas/PerformanceNote'
+    PerformanceNote:
+      type: object
+      properties:
+        vault_performance_note_id:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+        url:
+          type: string
+    AllocationPeriodsResponse:
+      type: object
+      properties:
+        periods:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllocationPeriodItem'
+        total:
+          type: integer
     Error:
       type: object
       description: Standard error envelope returned by the API.
@@ -129,15 +158,6 @@ components:
           format: date-time
         details:
           type: object
-    AllocationPeriodsResponse:
-      type: object
-      properties:
-        periods:
-          type: array
-          items:
-            $ref: '#/components/schemas/AllocationPeriodItem'
-        total:
-          type: integer
     AllocationPeriodItem:
       type: object
       properties:
@@ -149,26 +169,6 @@ components:
         period_end:
           type: integer
           description: Unix timestamp
-    PerformanceNote:
-      type: object
-      properties:
-        vault_performance_note_id:
-          type: integer
-        title:
-          type: string
-        content:
-          type: string
-        url:
-          type: string
-    AllocationSnapshotsResponse:
-      type: object
-      properties:
-        snapshots:
-          type: array
-          items:
-            $ref: '#/components/schemas/AllocationSnapshot'
-        performance_note:
-          $ref: '#/components/schemas/PerformanceNote'
   parameters:
     VaultAddress:
       name: vault_address
