@@ -85,6 +85,61 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    AllocationSnapshotsResponse:
+      type: object
+      properties:
+        snapshots:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllocationSnapshot'
+        performance_note:
+          $ref: '#/components/schemas/PerformanceNote'
+    PerformanceNote:
+      type: object
+      properties:
+        vault_performance_note_id:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+        url:
+          type: string
+    Error:
+      type: object
+      description: Standard error envelope returned by the API.
+      properties:
+        error:
+          type: string
+          description: Brief error description
+        message:
+          type: string
+          description: Detailed error message
+        timestamp:
+          type: string
+          format: date-time
+        details:
+          type: object
+    AllocationPeriodItem:
+      type: object
+      properties:
+        allocation_period_id:
+          type: integer
+        period_start:
+          type: integer
+          description: Unix timestamp
+        period_end:
+          type: integer
+          description: Unix timestamp
+    AllocationPeriodsResponse:
+      type: object
+      properties:
+        periods:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllocationPeriodItem'
+        total:
+          type: integer
     AllocationSnapshot:
       type: object
       properties:
@@ -114,61 +169,6 @@ components:
           - 'null'
         totalApr:
           type: number
-    AllocationSnapshotsResponse:
-      type: object
-      properties:
-        snapshots:
-          type: array
-          items:
-            $ref: '#/components/schemas/AllocationSnapshot'
-        performance_note:
-          $ref: '#/components/schemas/PerformanceNote'
-    PerformanceNote:
-      type: object
-      properties:
-        vault_performance_note_id:
-          type: integer
-        title:
-          type: string
-        content:
-          type: string
-        url:
-          type: string
-    AllocationPeriodsResponse:
-      type: object
-      properties:
-        periods:
-          type: array
-          items:
-            $ref: '#/components/schemas/AllocationPeriodItem'
-        total:
-          type: integer
-    Error:
-      type: object
-      description: Standard error envelope returned by the API.
-      properties:
-        error:
-          type: string
-          description: Brief error description
-        message:
-          type: string
-          description: Detailed error message
-        timestamp:
-          type: string
-          format: date-time
-        details:
-          type: object
-    AllocationPeriodItem:
-      type: object
-      properties:
-        allocation_period_id:
-          type: integer
-        period_start:
-          type: integer
-          description: Unix timestamp
-        period_end:
-          type: integer
-          description: Unix timestamp
   parameters:
     VaultAddress:
       name: vault_address

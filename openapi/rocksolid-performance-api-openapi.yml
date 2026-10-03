@@ -67,21 +67,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: Standard error envelope returned by the API.
-      properties:
-        error:
-          type: string
-          description: Brief error description
-        message:
-          type: string
-          description: Detailed error message
-        timestamp:
-          type: string
-          format: date-time
-        details:
-          type: object
     AprResponse:
       type: object
       properties:
@@ -97,6 +82,21 @@ components:
           type: string
         totalAprAgainstEth:
           type: string
+    Error:
+      type: object
+      description: Standard error envelope returned by the API.
+      properties:
+        error:
+          type: string
+          description: Brief error description
+        message:
+          type: string
+          description: Detailed error message
+        timestamp:
+          type: string
+          format: date-time
+        details:
+          type: object
   parameters:
     VaultAddress:
       name: vault_address
