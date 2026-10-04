@@ -75,6 +75,45 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Curator:
+      type: object
+      properties:
+        curator_id:
+          type: integer
+        name:
+          type: string
+        logo_url:
+          type: string
+        website_url:
+          type: string
+    Error:
+      type: object
+      description: Standard error envelope returned by the API.
+      properties:
+        error:
+          type: string
+          description: Brief error description
+        message:
+          type: string
+          description: Detailed error message
+        timestamp:
+          type: string
+          format: date-time
+        details:
+          type: object
+    Chain:
+      type: object
+      properties:
+        chain_database_id:
+          type: integer
+        name:
+          type: string
+        logo_url:
+          type: string
+        chain_id:
+          type: integer
+        explorer_url:
+          type: string
     Vault:
       type: object
       description: A RockSolid liquid vault with metadata, related entities and latest performance.
@@ -167,6 +206,20 @@ components:
           type: number
         underlyingAssetGrowthRatePercent:
           type: number
+    Reward:
+      type: object
+      properties:
+        reward_id:
+          type: integer
+        name:
+          type: string
+        logo:
+          type: string
+        classification:
+          type: string
+          description: Token | Points | NFT
+        is_active:
+          type: boolean
     UnderlyingAsset:
       type: object
       properties:
@@ -208,35 +261,6 @@ components:
           type:
           - string
           - 'null'
-    Error:
-      type: object
-      description: Standard error envelope returned by the API.
-      properties:
-        error:
-          type: string
-          description: Brief error description
-        message:
-          type: string
-          description: Detailed error message
-        timestamp:
-          type: string
-          format: date-time
-        details:
-          type: object
-    Reward:
-      type: object
-      properties:
-        reward_id:
-          type: integer
-        name:
-          type: string
-        logo:
-          type: string
-        classification:
-          type: string
-          description: Token | Points | NFT
-        is_active:
-          type: boolean
     Performance:
       type: object
       properties:
@@ -264,19 +288,6 @@ components:
           type: string
         shares_per_eth:
           type: string
-    Chain:
-      type: object
-      properties:
-        chain_database_id:
-          type: integer
-        name:
-          type: string
-        logo_url:
-          type: string
-        chain_id:
-          type: integer
-        explorer_url:
-          type: string
     Platform:
       type: object
       properties:
@@ -285,17 +296,6 @@ components:
         name:
           type: string
         logo_url:
-          type: string
-    Curator:
-      type: object
-      properties:
-        curator_id:
-          type: integer
-        name:
-          type: string
-        logo_url:
-          type: string
-        website_url:
           type: string
   parameters:
     VaultAddress:

@@ -85,6 +85,32 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    AllocationPeriodItem:
+      type: object
+      properties:
+        allocation_period_id:
+          type: integer
+        period_start:
+          type: integer
+          description: Unix timestamp
+        period_end:
+          type: integer
+          description: Unix timestamp
+    Error:
+      type: object
+      description: Standard error envelope returned by the API.
+      properties:
+        error:
+          type: string
+          description: Brief error description
+        message:
+          type: string
+          description: Detailed error message
+        timestamp:
+          type: string
+          format: date-time
+        details:
+          type: object
     AllocationSnapshotsResponse:
       type: object
       properties:
@@ -105,32 +131,6 @@ components:
           type: string
         url:
           type: string
-    Error:
-      type: object
-      description: Standard error envelope returned by the API.
-      properties:
-        error:
-          type: string
-          description: Brief error description
-        message:
-          type: string
-          description: Detailed error message
-        timestamp:
-          type: string
-          format: date-time
-        details:
-          type: object
-    AllocationPeriodItem:
-      type: object
-      properties:
-        allocation_period_id:
-          type: integer
-        period_start:
-          type: integer
-          description: Unix timestamp
-        period_end:
-          type: integer
-          description: Unix timestamp
     AllocationPeriodsResponse:
       type: object
       properties:
