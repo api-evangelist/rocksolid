@@ -75,32 +75,29 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Curator:
+    Reward:
       type: object
       properties:
-        curator_id:
+        reward_id:
+          type: integer
+        name:
+          type: string
+        logo:
+          type: string
+        classification:
+          type: string
+          description: Token | Points | NFT
+        is_active:
+          type: boolean
+    Platform:
+      type: object
+      properties:
+        platform_id:
           type: integer
         name:
           type: string
         logo_url:
           type: string
-        website_url:
-          type: string
-    Error:
-      type: object
-      description: Standard error envelope returned by the API.
-      properties:
-        error:
-          type: string
-          description: Brief error description
-        message:
-          type: string
-          description: Detailed error message
-        timestamp:
-          type: string
-          format: date-time
-        details:
-          type: object
     Chain:
       type: object
       properties:
@@ -114,6 +111,85 @@ components:
           type: integer
         explorer_url:
           type: string
+    Curator:
+      type: object
+      properties:
+        curator_id:
+          type: integer
+        name:
+          type: string
+        logo_url:
+          type: string
+        website_url:
+          type: string
+    Performance:
+      type: object
+      properties:
+        vault_id:
+          type: integer
+        vault_performance_id:
+          type: integer
+        recorded_on:
+          type: string
+        per_share_nav:
+          type: string
+        outstanding_shares:
+          type: string
+        estimated_apy:
+          type: number
+        total_supply:
+          type: string
+        total_assets:
+          type: string
+        share_value_against_underlying_raw:
+          type: string
+        share_value_against_eth_raw:
+          type: string
+        shares_per_underlying_asset:
+          type: string
+        shares_per_eth:
+          type: string
+    UnderlyingAsset:
+      type: object
+      properties:
+        token_id:
+          type: integer
+        name:
+          type: string
+        icon:
+          type: string
+        symbol:
+          type: string
+        address:
+          type: string
+        decimals:
+          type: integer
+        chain_database_id:
+          type: integer
+        price_feed_id:
+          type: string
+        price_feed_token:
+          type: string
+        is_active:
+          type: boolean
+        to_usd_oracle_contract:
+          type:
+          - string
+          - 'null'
+        to_eth_oracle_contract:
+          type:
+          - string
+          - 'null'
+        to_eth_price_feed_id:
+          type:
+          - string
+          - 'null'
+        is_yield_bearing:
+          type: boolean
+        yield_apr_endpoint:
+          type:
+          - string
+          - 'null'
     Vault:
       type: object
       description: A RockSolid liquid vault with metadata, related entities and latest performance.
@@ -206,97 +282,21 @@ components:
           type: number
         underlyingAssetGrowthRatePercent:
           type: number
-    Reward:
+    Error:
       type: object
+      description: Standard error envelope returned by the API.
       properties:
-        reward_id:
-          type: integer
-        name:
+        error:
           type: string
-        logo:
+          description: Brief error description
+        message:
           type: string
-        classification:
+          description: Detailed error message
+        timestamp:
           type: string
-          description: Token | Points | NFT
-        is_active:
-          type: boolean
-    UnderlyingAsset:
-      type: object
-      properties:
-        token_id:
-          type: integer
-        name:
-          type: string
-        icon:
-          type: string
-        symbol:
-          type: string
-        address:
-          type: string
-        decimals:
-          type: integer
-        chain_database_id:
-          type: integer
-        price_feed_id:
-          type: string
-        price_feed_token:
-          type: string
-        is_active:
-          type: boolean
-        to_usd_oracle_contract:
-          type:
-          - string
-          - 'null'
-        to_eth_oracle_contract:
-          type:
-          - string
-          - 'null'
-        to_eth_price_feed_id:
-          type:
-          - string
-          - 'null'
-        is_yield_bearing:
-          type: boolean
-        yield_apr_endpoint:
-          type:
-          - string
-          - 'null'
-    Performance:
-      type: object
-      properties:
-        vault_id:
-          type: integer
-        vault_performance_id:
-          type: integer
-        recorded_on:
-          type: string
-        per_share_nav:
-          type: string
-        outstanding_shares:
-          type: string
-        estimated_apy:
-          type: number
-        total_supply:
-          type: string
-        total_assets:
-          type: string
-        share_value_against_underlying_raw:
-          type: string
-        share_value_against_eth_raw:
-          type: string
-        shares_per_underlying_asset:
-          type: string
-        shares_per_eth:
-          type: string
-    Platform:
-      type: object
-      properties:
-        platform_id:
-          type: integer
-        name:
-          type: string
-        logo_url:
-          type: string
+          format: date-time
+        details:
+          type: object
   parameters:
     VaultAddress:
       name: vault_address

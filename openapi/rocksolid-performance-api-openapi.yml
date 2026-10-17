@@ -66,6 +66,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    VaultAddress:
+      name: vault_address
+      in: path
+      required: true
+      description: Vault contract address (normalized to lowercase)
+      schema:
+        type: string
+        example: '0xba71097e426983d840569edfa1a01396b56d86ad'
   schemas:
     AprResponse:
       type: object
@@ -97,12 +106,3 @@ components:
           format: date-time
         details:
           type: object
-  parameters:
-    VaultAddress:
-      name: vault_address
-      in: path
-      required: true
-      description: Vault contract address (normalized to lowercase)
-      schema:
-        type: string
-        example: '0xba71097e426983d840569edfa1a01396b56d86ad'
